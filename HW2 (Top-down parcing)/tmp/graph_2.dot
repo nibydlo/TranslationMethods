@@ -1,0 +1,56 @@
+digraph parseTree {
+	ordering=out;
+	a_0 [label="E"];
+	a_1 [label="T"];
+	a_2 [label="F"];
+	a_3 [label="-"; style=filled; fillcolor=green;];
+	a_4 [label="F"];
+	a_5 [label="("; style=filled; fillcolor=green;];
+	a_6 [label="E"];
+	a_7 [label="T"];
+	a_8 [label="F"];
+	a_9 [label="4149"; style=filled; fillcolor=green;];
+	a_10 [label="A'"];
+	a_11 [label="e"; style=filled; fillcolor=green;];
+	a_10 -> a_11
+	a_8 -> a_9
+	a_8 -> a_10
+	a_12 [label="T'"];
+	a_13 [label="*"; style=filled; fillcolor=green;];
+	a_14 [label="F"];
+	a_15 [label="1006"; style=filled; fillcolor=green;];
+	a_16 [label="A'"];
+	a_17 [label="e"; style=filled; fillcolor=green;];
+	a_16 -> a_17
+	a_14 -> a_15
+	a_14 -> a_16
+	a_18 [label="T'"];
+	a_19 [label="e"; style=filled; fillcolor=green;];
+	a_18 -> a_19
+	a_12 -> a_13
+	a_12 -> a_14
+	a_12 -> a_18
+	a_7 -> a_8
+	a_7 -> a_12
+	a_20 [label="E'"];
+	a_21 [label="e"; style=filled; fillcolor=green;];
+	a_20 -> a_21
+	a_6 -> a_7
+	a_6 -> a_20
+	a_22 [label=")"; style=filled; fillcolor=green;];
+	a_4 -> a_5
+	a_4 -> a_6
+	a_4 -> a_22
+	a_2 -> a_3
+	a_2 -> a_4
+	a_23 [label="T'"];
+	a_24 [label="e"; style=filled; fillcolor=green;];
+	a_23 -> a_24
+	a_1 -> a_2
+	a_1 -> a_23
+	a_25 [label="E'"];
+	a_26 [label="e"; style=filled; fillcolor=green;];
+	a_25 -> a_26
+	a_0 -> a_1
+	a_0 -> a_25
+}

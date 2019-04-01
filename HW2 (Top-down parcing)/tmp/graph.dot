@@ -1,0 +1,26 @@
+digraph parseTree {
+	ordering=out;
+	a_0 [label="E"];
+	a_1 [label="T"];
+	a_2 [label="F"; style=filled; fillcolor=green;];
+	a_3 [label="T'"];
+	a_4 [label="F"];
+	a_5 [label="E"];
+	a_6 [label="T"];
+	a_7 [label="F"; style=filled; fillcolor=green;];
+	a_8 [label="T'"; style=filled; fillcolor=green;];
+	a_6 -> a_7
+	a_6 -> a_8
+	a_9 [label="E'"; style=filled; fillcolor=green;];
+	a_5 -> a_6
+	a_5 -> a_9
+	a_4 -> a_5
+	a_10 [label="T'"; style=filled; fillcolor=green;];
+	a_3 -> a_4
+	a_3 -> a_10
+	a_1 -> a_2
+	a_1 -> a_3
+	a_11 [label="E'"; style=filled; fillcolor=green;];
+	a_0 -> a_1
+	a_0 -> a_11
+}
