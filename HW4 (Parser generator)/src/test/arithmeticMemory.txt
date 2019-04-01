@@ -1,0 +1,22 @@
+IGNORE : "[\t\r%ы& ]+"
+NUM   : "[0-9]+"
+NAME  : "[a-zA-Z]+"
+PLUS  : "\\+"
+MINUS : "-"
+MULT  : "\\*"
+EPS   : ""
+LBRACE : "\\("
+RBRACE : "\\)"
+NL : ";"
+EQ : "="
+POW : "\\^"
+start return {HashMap<String,Integer> hm} : {HashMap<String, Integer> hm = new HashMap()} assignVar[hm] NL other[hm] {$hm = hm}
+assignVar [HashMap<String,Integer> $hm] : NAME EQ exp[hm] {System.out.println($0.getText() + " = " +  $2.val) ; hm.put($0.getText(), $2.val)}
+other [HashMap<String,Integer> $hm] : assignVar[hm] NL other[hm] | EPS
+exp [HashMap<String,Integer> $hm] return {Integer val = 0} : mult[hm] endofexp[hm] {$val = $0.val + $1.val}
+endofexp [HashMap<String,Integer> $hm] return {Integer val = 0} : PLUS mult[hm] endofexp[hm] {$val = $1.val + $2.val}| MINUS mult[hm] endofexp[hm] {$val = -1 * $1.val + $2.val} | EPS
+mult [HashMap<String,Integer> $hm] return {Integer val}: power[hm] endofmult[hm] {$val = $0.val * $1.val}
+power [HashMap<String,Integer> $hm] return {Integer val} : atom[hm] endofpow[hm] {$val = (int) Math.pow($0.val, $1.val)}
+endofpow [HashMap<String,Integer> $hm] return {Integer val = 1} : POW atom[hm] endofpow[hm] {$val = (int) Math.pow($1.val, $2.val)} | EPS
+endofmult [HashMap<String,Integer> $hm] return {Integer val = 1} : MULT power[hm] endofmult[hm] {$val = $1.val * $2.val}| EPS
+atom [HashMap<String,Integer> $hm] return {Integer val} : NUM {$val = Integer.parseInt($0.getText());} | LBRACE exp[hm] RBRACE {$val = $1.val}| MINUS atom[hm] {$val = -1 * $1.val} | NAME {$val = hm.get($0.getText())}

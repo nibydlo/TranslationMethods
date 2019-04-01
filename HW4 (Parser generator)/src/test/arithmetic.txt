@@ -1,0 +1,16 @@
+NUM   : "[0-9]+"
+NAME  : "[a-z]+"
+PLUS  : "\\+"
+MINUS : "-"
+MULT  : "\\*"
+EPS   : ""
+LBRACE : "\\("
+RBRACE : "\\)"
+POW : "\\^";
+exp return {Integer val = 0} : mult endofexp {$val = $0.val + $1.val}
+endofexp return {Integer val = 0} : PLUS mult endofexp {$val = $1.val + $2.val}| MINUS mult endofexp {$val = -1 * $1.val + $2.val} | EPS
+mult return {Integer val}: power endofmult {$val = $0.val * $1.val}
+endofmult return {Integer val = 1} : MULT power endofmult {$val = $1.val * $2.val}| EPS
+power return {Integer val} : atom endofpow {$val = (int) Math.pow($0.val, $1.val)}
+endofpow return {Integer val = 1} : POW atom endofpow {$val = (int) Math.pow($1.val, $2.val)} | EPS
+atom return {Integer val} : NUM {$val = Integer.parseInt($0.getText());} | LBRACE exp RBRACE {$val = $1.val}| MINUS atom {$val = -1 * $1.val}

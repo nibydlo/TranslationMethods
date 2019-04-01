@@ -1,0 +1,8 @@
+NAME : "[a-z]+"
+NUM  : "[0-9]+"
+EQ   : "="
+
+eXp[Integer $x1] return [Map.HashMap<Integer> $h1] : NAME  kek[$kekArg] {lol $lolol.get + 3 - 7.2} | lol kek[$fst, $snd] {ahaha} LOL {some ; code}
+lolRule : EQ
+lol[Integer $x1] : EQ
+kek[Integer $x1, String $x2] : NUM

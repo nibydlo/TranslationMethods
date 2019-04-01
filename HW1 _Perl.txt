@@ -1,0 +1,202 @@
+1
+while (<>) {
+  print if /cat.*cat/;
+}
+
+2
+while (<>) {
+  print if /\bcat\b/
+}
+
+3
+while (<>) {
+  print if /[cC][aA][tT]/;
+}
+
+4
+while (<>) {
+  print if /z...z/;
+}
+
+5
+while (<>) {
+  print if /[xyz].{5,17}[xyz]/;
+}
+
+6
+while (<>) {
+  print if /\b[0-9]+\b/;
+}
+
+7
+while (<>) {
+  print if /\\/;
+}
+
+8
+while (<>) {
+  print if /\(+[^\(\)]*[\w]+[^\(\)]*\)+/;
+}
+
+9
+while (<>) {
+  print if /(^\S.*\S$)|(^\S*$)/;
+}
+
+10
+while (<>) {
+  print if /\b(\w+)\g1\b/;
+}
+
+11
+while (<>) {
+  print if /^0*(1(01*0)*10*)*$/;
+}
+
+201
+while (<>) {
+  s/human/computer/g;
+  print;
+}
+
+202
+while (<>) {
+  s/\bhuman\b/computer/g;
+  print;
+}
+
+203
+while (<>) {
+  s/\b(A|a)+\b/argh/;
+  print;
+}
+
+204
+while (<>) {
+  s/(\w+)(\W+)(\w+)/$3$2$1/;
+  print;
+}
+
+205
+while (<>) {
+  s/\b(\w)(\w)/$2$1/g;
+  print;
+}
+
+206
+while (<>) {
+  s/([a-zA-Z])\g1/$1/g;
+  print;
+}
+
+207
+while (<>) {
+  s/([a-zA-Z])(\g1*)/$1/g;
+  print;
+}
+
+208
+while (<>) {
+  s/([^\b])0\b/$1/g;
+  print;
+}
+
+209
+while (<>) {
+  s/\([^\)]*\)/\(\)/g;
+  print;
+}
+
+210
+while (<>) {
+  s/a.*?(aa).*?(aa)[^a]*?a/bad/g;
+  print;
+}
+
+301
+my @array;
+ 
+#input array
+my $flag = 0;
+my $fl = 0;
+while (<>) {
+  if (!/^\s*$/) {
+    s/(\s)(\g1*)/$1/g;
+    s/^(\s*)//g;
+    s/(\s*)$//g;
+ 
+    if ($flag == 1 && $fl == 1) {
+      print "\n";
+    }
+    print;
+    print "\n";
+    $flag = 1;
+    $fl = 0;
+  } else {
+    $fl = 1;
+  }
+}
+ 
+#print join "", @array;
+
+302
+my $flag = 0;
+my $fl = 0;
+while (<>) {
+  s/<[^>]*>//g;
+  if (!/^\s*$/) {
+    s/(\s)(\g1*)/$1/g;
+    s/^(\s*)//g;
+    s/(\s*)$//g;
+ 
+    if ($flag == 1 && $fl == 1) {
+      print "\n";
+    }
+    print;
+    print "\n";
+    $flag = 1;
+    $fl = 0;
+  } else {
+    $fl = 1;
+  }
+}
+
+303
+my @array;
+ 
+while (<>) {
+    s/^(\s*)//g;
+    s/(\s*)$//g;
+    push @array, "$1" if /(^.*[^\s].*$)/;
+}
+ 
+my $joinedArray = join " ", @array;
+my @matches = ( $joinedArray =~ /<\s*?a\s[^<>]*\bhref\s*?=\s*?"([A-Za-z0-9-\._~:\/\?#\[\]\@!\$&'\(\)\*\+,;=`]+)?"[^<>]*?>/g);
+my @filtered = ();
+foreach $i (@matches) {
+    $i =~ s/^.*?(\/\/)//;
+    $i =~ s/:.*$//;
+    $i =~ s/\/.*$//;
+    $i =~ s/\?.*$//;
+    $i =~ s/\#.*$//;
+    push @filtered, $i if ($i =~ /\w/);
+}
+ 
+my @sorted = sort @filtered;
+my $prev = $sorted[0];
+if (scalar(@sorted) != 0) {
+    print $prev;
+    print "\n";
+}
+foreach $i (@sorted) {
+    if ($i !~ $prev) {
+        print $i;
+        print "\n";
+        $prev = $i;
+    }
+}
+
+
+
+
+
